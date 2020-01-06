@@ -1,0 +1,91 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "H8wo+NR5z+VRl0wqPYpVQfC06ks=",
+			"path": "github.com/go-stack/stack",
+			"revision": "2fee6af1a9795aafbe0253a0cfbdf668e1fb8a9a",
+			"revisionTime": "2018-08-26T13:48:48Z"
+		},
+		{
+			"checksumSHA1": "Qo2E/26skb9mZQ3b2Mh6QDkpBLs=",
+			"path": "github.com/pkg/errors",
+			"revision": "004deef56200d8bd57ebfd6f8734c08fbd003f6d",
+			"revisionTime": "2020-01-03T12:36:54Z"
+		},
+		{
+			"checksumSHA1": "OySaHWA595CDHVNxcYZc0FIzUgk=",
+			"path": "go.mongodb.org/mongo-driver/bson",
+			"revision": "b5d915e43f066f88d5ea7863ec42a314a9d877ad",
+			"revisionTime": "2020-01-02T16:02:45Z"
+		},
+		{
+			"checksumSHA1": "6bkely2WspAj7Ne12JD+aStOx60=",
+			"path": "go.mongodb.org/mongo-driver/bson/bsoncodec",
+			"revision": "b5d915e43f066f88d5ea7863ec42a314a9d877ad",
+			"revisionTime": "2020-01-02T16:02:45Z"
+		},
+		{
+			"checksumSHA1": "hSAl1XqA6fp+VPL/YwWeFYZZEQY=",
+			"path": "go.mongodb.org/mongo-driver/bson/bsonoptions",
+			"revision": "b5d915e43f066f88d5ea7863ec42a314a9d877ad",
+			"revisionTime": "2020-01-02T16:02:45Z"
+		},
+		{
+			"checksumSHA1": "LOLqDr3iMczlU3b1tQObbWC/QF0=",
+			"path": "go.mongodb.org/mongo-driver/bson/bsonrw",
+			"revision": "b5d915e43f066f88d5ea7863ec42a314a9d877ad",
+			"revisionTime": "2020-01-02T16:02:45Z"
+		},
+		{
+			"checksumSHA1": "f5NTjx5f2FTTAs7El+L50PF8unc=",
+			"path": "go.mongodb.org/mongo-driver/bson/bsontype",
+			"revision": "b5d915e43f066f88d5ea7863ec42a314a9d877ad",
+			"revisionTime": "2020-01-02T16:02:45Z"
+		},
+		{
+			"checksumSHA1": "vi1oFs+kQ4aOi/vsfY9e1KIut8w=",
+			"path": "go.mongodb.org/mongo-driver/bson/primitive",
+			"revision": "b5d915e43f066f88d5ea7863ec42a314a9d877ad",
+			"revisionTime": "2020-01-02T16:02:45Z"
+		},
+		{
+			"checksumSHA1": "bCHtVR/CKRsH1nNYrcz762OA6b0=",
+			"path": "go.mongodb.org/mongo-driver/mongo",
+			"revision": "b5d915e43f066f88d5ea7863ec42a314a9d877ad",
+			"revisionTime": "2020-01-02T16:02:45Z"
+		},
+		{
+			"checksumSHA1": "+KEZ3+5cmxNUuOL1Rkz+JqAMSFc=",
+			"path": "go.mongodb.org/mongo-driver/mongo/options",
+			"revision": "b5d915e43f066f88d5ea7863ec42a314a9d877ad",
+			"revisionTime": "2020-01-02T16:02:45Z"
+		},
+		{
+			"checksumSHA1": "jBLs26NhAnnOJua+K3HsdqihhV0=",
+			"path": "go.mongodb.org/mongo-driver/x/bsonx/bsoncore",
+			"revision": "b5d915e43f066f88d5ea7863ec42a314a9d877ad",
+			"revisionTime": "2020-01-02T16:02:45Z"
+		},
+		{
+			"checksumSHA1": "R9iBDY+aPnT+8pyRcqGjXq5QixA=",
+			"path": "golang.org/x/text/transform",
+			"revision": "929e72ca90deac4784bbe451caf10faa5b256ebe",
+			"revisionTime": "2019-11-14T14:00:43Z"
+		},
+		{
+			"checksumSHA1": "eTvVCF1qJTPYUphbo7NpQ7kXzPE=",
+			"path": "golang.org/x/text/unicode/norm",
+			"revision": "929e72ca90deac4784bbe451caf10faa5b256ebe",
+			"revisionTime": "2019-11-14T14:00:43Z"
+		},
+		{
+			"checksumSHA1": "U2Zf0NLGnRPvRfEiqKmNEO6KwTU=",
+			"path": "gopkg.in/tucnak/telebot.v2",
+			"revision": "baa616bc00d5ff692303dbc4e2fed9316b7e8290",
+			"revisionTime": "2019-12-25T23:47:05Z"
+		}
+	],
+	"rootPath": "github.com/gui-moreira/cancun-challenge-bot"
+}

@@ -15,7 +15,7 @@ import (
 
 func main() {
 
-	clientOptions := options.Client().ApplyURI(os.Getenv("CONN_STR"))
+	clientOptions := options.Client().ApplyURI(os.Getenv("MONGODB_URI"))
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {
 		log.Fatal(err)
