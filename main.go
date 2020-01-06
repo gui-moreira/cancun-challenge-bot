@@ -1,7 +1,6 @@
 package main
 
 import (
-	"time"
 	"log"
 	"context"
 	"fmt"
@@ -33,9 +32,20 @@ func main() {
 
 	repo := &scoreRepo { mongo: client, collection: collection}
 
+	var (
+        port      = os.Getenv("PORT")
+        publicURL = os.Getenv("PUBLIC_URL")
+        token     = os.Getenv("TELEGRAM_TOKEN")
+    )
+
+    webhook := &tb.Webhook{
+        Listen:   ":" + port,
+        Endpoint: &tb.WebhookEndpoint{PublicURL: publicURL},
+    }
+
 	b, err := tb.NewBot(tb.Settings{
-		Token:  os.Getenv("TELEGRAM_TOKEN"),
-		Poller: &tb.LongPoller{Timeout: 10 * time.Second},
+		Token:  token,
+		Poller: webhook,
 	})
 
 	if err != nil {
