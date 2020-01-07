@@ -81,11 +81,15 @@ func main() {
 		}
 
 		score := repo.getAll()
+		maxScore := 0
+		if len(score) > 0 {
+			maxScore = score[0].ActualScore
+		}
 
 		lines := []string{}
-		for i, s := range score {
+		for _, s := range score {
 			l := fmt.Sprintf("%s: %v pontos", s.Name, s.ActualScore)
-			if i == 0 {
+			if s.ActualScore == maxScore {
 				l = fmt.Sprintf("*%s* \xF0\x9F\x92\xAA", l)
 			}
 			
