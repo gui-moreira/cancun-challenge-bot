@@ -82,22 +82,27 @@ func main() {
 
 		score := repo.getAll()
 		maxScore := 0
+		minScore := 0
 		if len(score) > 0 {
 			maxScore = score[0].ActualScore
+			minScore = score[len(score)-1].ActualScore
 		}
 
 		lines := []string{}
 		for _, s := range score {
 			l := fmt.Sprintf("%s: %v pontos", s.Name, s.ActualScore)
+
 			if s.ActualScore == maxScore {
 				l = fmt.Sprintf("*%s* \xF0\x9F\x92\xAA", l)
+			}
+
+			if maxScore != minScore && s.ActualScore == minScore {
+				l = fmt.Sprintf("%s \xF0\x9F\x8D\x95", l)
 			}
 			
 
 			lines = append(lines, l)
 		}
-
-		lines[len(lines)-1] = fmt.Sprintf("%s \xF0\x9F\x8D\x95", lines[len(lines)-1])
 
 		b.Send(m.Chat, strings.Join(lines, "\n"), &tb.SendOptions{ParseMode:tb.ModeMarkdown})
 	})
