@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"strings"
 	"os"
+	"math/rand"
+	"time"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -28,9 +30,10 @@ func main() {
 
 	fmt.Println("Connected to MongoDB!")
 
-	collection := client.Database("heroku_szwnf11w").Collection("scores")
+	database := client.Database("heroku_szwnf11w")
 
-	repo := &scoreRepo { mongo: client, collection: collection}
+	scores := &scoreRepo { mongo: client, collection: database.Collection("scores")}
+	phrases := &phraseRepo { mongo: client, collection: database.Collection("phrases")}
 
 	var (
         port      = os.Getenv("PORT")
@@ -54,9 +57,9 @@ func main() {
 	}
 
 	b.Handle("/up", func(m *tb.Message) {
-		sc := repo.getScore(m.Sender.ID)
+		sc := scores.getScore(m.Sender.ID)
 		if sc == nil {
-			repo.insertScore(&score{
+			scores.insertScore(&score{
 				ID: m.Sender.ID,
 				Name: m.Sender.FirstName,
 				ActualScore: 0,
@@ -64,23 +67,23 @@ func main() {
 		}
 		
 		sc.ActualScore = sc.ActualScore + 1
-		repo.updateScore(sc)
+		scores.updateScore(sc)
 
 		msg := fmt.Sprintf("É isso aí %s! Continue nesse ritmo.", m.Sender.FirstName)
 		b.Send(m.Chat, msg)
 	})
 
 	b.Handle("/status", func(m *tb.Message) {
-		sc := repo.getScore(m.Sender.ID)
+		sc := scores.getScore(m.Sender.ID)
 		if sc == nil {
-			repo.insertScore(&score{
+			scores.insertScore(&score{
 				ID: m.Sender.ID,
 				Name: m.Sender.FirstName,
 				ActualScore: 0,
 			})
 		}
 
-		score := repo.getAll()
+		score := scores.getAll()
 		maxScore := 0
 		minScore := 0
 		if len(score) > 0 {
@@ -108,9 +111,9 @@ func main() {
 	})
 
 	b.Handle("/down", func(m *tb.Message) {
-		sc := repo.getScore(m.Sender.ID)
+		sc := scores.getScore(m.Sender.ID)
 		if sc == nil {
-			repo.insertScore(&score{
+			scores.insertScore(&score{
 				ID: m.Sender.ID,
 				Name: m.Sender.FirstName,
 				ActualScore: 0,
@@ -118,7 +121,7 @@ func main() {
 		}
 
 		sc.ActualScore = sc.ActualScore - 1
-		repo.updateScore(sc)
+		scores.updateScore(sc)
 
 		msg := fmt.Sprintf("Que pena %s! Mas o importante é continuar.", m.Sender.FirstName)
 		b.Send(m.Chat, msg)
@@ -130,6 +133,29 @@ func main() {
 			+1 ponto se for na academia (up)
 			-1 ponto se comer junk food (down)
 		`)
+	})
+
+	b.Handle("/addbirl", func(m *tb.Message) {
+		text := strings.Replace(m.Text, "/addbirl", "", 1)
+		text = strings.Replace(text, "@cancun_challenge_bot", "", 1)
+		text = strings.TrimSpace(text)
+
+		if len(text) == 0 {
+			b.Send(m.Chat, "Escreve uma frase, PORRA!")
+			return
+		}
+
+		phrases.insertPhrase(text, "birl")
+		b.Send(m.Chat, "Isso aí, frase de monstrão!")
+	})
+
+	b.Handle("/birl", func(m *tb.Message) {
+		allPhrases := phrases.getAll("birl")
+
+		rand.Seed(time.Now().Unix()) // initialize global pseudo random generator
+		p := allPhrases[rand.Intn(len(allPhrases))]
+
+		b.Send(m.Chat, p.Text)
 	})
 
 	b.Start()

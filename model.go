@@ -6,9 +6,7 @@ type score struct {
 	ActualScore int `"bson":"actualscore"`
 }
 
-type repository interface {
-	getAll()
-	getScore(ID int)
-	insertScore(s *score)
-	updateScore(s *score)
+type phrase struct {
+	Text string
+	Type string
 }
