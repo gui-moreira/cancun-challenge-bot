@@ -10,7 +10,6 @@ import (
 )
 
 type scoreRepo struct {
-	mongo *mongo.Client
 	collection *mongo.Collection
 }
 

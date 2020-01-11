@@ -9,7 +9,6 @@ import (
 )
 
 type phraseRepo struct {
-	mongo *mongo.Client
 	collection *mongo.Collection
 }
 
